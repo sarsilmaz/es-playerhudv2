@@ -23,13 +23,7 @@ if Config.Settings["Framework Preference"] == 'ESX' then
 
         RegisterNetEvent('esx:playerLoaded')
         AddEventHandler('esx:playerLoaded', function(xPlayer)
-            Framework.TriggerServerCallback("data",function(result)
-                SendNUIMessage({
-                    action = "player",
-                    info = result
-                })
                 TriggerEvent("Players")
-            end)
         end)
 
         RegisterNetEvent('Players')
@@ -67,15 +61,9 @@ elseif Config.Settings["Framework Preference"] == 'QBCore' or Config.Settings["F
         end
     end)
 
-    RegisterNetEvent('QBCore:Client:OnPlayerLoaded') 
-    AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
-        Framework.Functions.TriggerCallback("data",function(result)
-            SendNUIMessage({
-                action = "player",
-                info = result
-            })
-            TriggerEvent("Players")
-        end)
+    CreateThread(function()
+        Wait(5000)
+        TriggerEvent("Players")
     end)
 
     RegisterNetEvent('Players')
