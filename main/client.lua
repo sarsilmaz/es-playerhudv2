@@ -1,6 +1,11 @@
 
 Framework = nil
 
+CreateThread(function()
+    Wait(5000)
+    TriggerEvent("Players")
+end)
+
 if Config.Settings["Framework Preference"] == 'ESX' then
     Citizen.CreateThread(function()
         while Framework == nil do
@@ -21,10 +26,6 @@ if Config.Settings["Framework Preference"] == 'ESX' then
             end
         end)
 
-        RegisterNetEvent('esx:playerLoaded')
-        AddEventHandler('esx:playerLoaded', function(xPlayer)
-                TriggerEvent("Players")
-        end)
 
         RegisterNetEvent('Players')
         AddEventHandler('Players', function(xPlayer)
@@ -59,11 +60,6 @@ elseif Config.Settings["Framework Preference"] == 'QBCore' or Config.Settings["F
         if GetCurrentResourceName() == resourceName then
             TriggerEvent("Players")
         end
-    end)
-
-    CreateThread(function()
-        Wait(5000)
-        TriggerEvent("Players")
     end)
 
     RegisterNetEvent('Players')
