@@ -33,9 +33,9 @@ elseif Config.Settings["Framework Preference"] == 'QBCore' or Config.Settings["F
         end
     else  Framework = exports['qb-core']:GetCoreObject() end
 
-    Framework.Functions.TriggerCallback("data", function(source, cb)
+    Framework.Functions.CreateCallback("data", function(source, cb)
         local xPlayer = Framework.Functions.GetPlayer(source)
-        local  Players = Framework.GetPlayers()
+        local  Players = Framework.Functions.GetPlayers()
         for i = 1, #Players do
             local xPlayer = Framework.Functions.GetPlayer(Players[i])
         cb({
